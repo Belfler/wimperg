@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from wimperg.models import Profile
+
+
+@admin.register(Profile)
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'photo', 'date_of_birth')
