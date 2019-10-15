@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView, FormView
 
 from wimperg.models import Profile
-from wimperg.forms import RegistrationForm, EditUserForm, EditProfileForm
+from wimperg.forms import RegistrationForm, EditUserForm, EditProfileForm, get_form_error_list
 
 
 class News(TemplateView):
@@ -36,7 +36,8 @@ class ChangingProfile(TemplateView):
             profile_form.save()
             messages.success(request, 'Changes have been successfully saved.')
         else:
-            messages.error(request, 'Some error has occurred.')
+            for error_text in (get_form_error_list(user_form) + get_form_error_list(profile_form)):
+                messages.error(request, error_text)
         return render(self.request, self.template_name, context=self.get_context_data())
 
     def get_context_data(self, **kwargs):

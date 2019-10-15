@@ -1,8 +1,18 @@
+from typing import Type
+
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 from wimperg.models import Profile
+
+
+def get_form_error_list(form):
+    errors = []
+    for error_list in form.errors.values():
+        for error in error_list:
+            errors.append(error)
+    return errors
 
 
 class RegistrationForm(UserCreationForm):
