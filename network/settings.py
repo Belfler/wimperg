@@ -115,6 +115,11 @@ MEDIA_URL = '/media/'
 
 # Authentication
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'wimperg.auth.EmailAuthBackend',
+]
+
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'wimperg:news'
 LOGOUT_URL = 'logout'
