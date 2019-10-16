@@ -1,5 +1,9 @@
 import os
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -19,13 +23,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'wimperg.apps.WimpergConfig',
+    'wimperg',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -118,6 +123,7 @@ MEDIA_URL = '/media/'
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'wimperg.auth.EmailAuthBackend',
+    'social_core.backends.google.GoogleOAuth2',
 ]
 
 LOGIN_URL = 'login'
@@ -126,3 +132,8 @@ LOGOUT_URL = 'logout'
 LOGOUT_REDIRECT_URL = 'wimperg:index'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Google auth
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.getenv('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.getenv('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')

@@ -9,6 +9,7 @@
 	{{ form.as_p }}
 	<p><input type="submit" value="Login"></p>
 </form>
+<p><a href="{% url "social:begin" "google-oauth2" %}" class="google button">Login with Google</a></p>
 <p><a href="{% url "wimperg:registration" %}">Registration</a></p>
 <p><a href="{% url "password_reset" %}">Forgotten your password?</a></p>
 {% endblock %}
